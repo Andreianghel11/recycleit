@@ -28,6 +28,7 @@ from matplotlib import pyplot as plt
 #         except Exception as e: 
 #             print('Issue with image {}'.format(image_path))
 #             #os.remove(image_path)
+# test
 
 print(tf.__version__)
 print(keras.__version__)
