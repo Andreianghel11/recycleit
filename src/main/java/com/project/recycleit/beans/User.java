@@ -1,5 +1,6 @@
 package com.project.recycleit.beans;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -36,10 +37,14 @@ public class User implements UserDetails {
     private Role role;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy= "user")
+    @JsonIgnore
     private List<RecyclingHistory> recyclingHistory;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy= "user")
+    @JsonIgnore
     private List<UserAchievement> userAchievements;
+
+
 
     public User() {
     }

@@ -27,4 +27,16 @@ public class GlobalExceptionHandler {
         return new ErrorResponse(HttpStatus.CONFLICT.value(), ex.getMessage(), new Date(System.currentTimeMillis()));
     }
 
+    @ExceptionHandler(UserNotLoggedInException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public ErrorResponse handleUserNotLoggedInException(UserNotLoggedInException ex) {
+        return new ErrorResponse(HttpStatus.UNAUTHORIZED.value(), ex.getMessage(), new Date(System.currentTimeMillis()));
+    }
+
+    @ExceptionHandler(UserNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ErrorResponse handleUserNotFoundException(UserNotFoundException ex) {
+        return new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage(), new Date(System.currentTimeMillis()));
+    }
+
 }

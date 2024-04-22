@@ -1,5 +1,6 @@
 package com.project.recycleit.configs;
 
+import com.project.recycleit.exceptionHandler.UserNotLoggedInException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

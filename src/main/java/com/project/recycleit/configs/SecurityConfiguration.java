@@ -37,7 +37,7 @@ public class SecurityConfiguration {
                                 "/swagger-ui/**",
                                 "/swagger-ui.html")
                         .permitAll()
-                        .requestMatchers("/wasteItem/**").hasAuthority("ADMIN")
+                        .requestMatchers("/wasteItem/**", "/user/**").hasAuthority("ADMIN")
                         .anyRequest()
                         .authenticated())
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
