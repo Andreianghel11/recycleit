@@ -23,6 +23,12 @@ public class Achievement {
     public Achievement() {
     }
 
+    public Achievement(String name, String description, String icon_path) {
+        this.name = name;
+        this.description = description;
+        this.icon_path = icon_path;
+    }
+
     public Long getAchievementId() {
         return achievementId;
     }

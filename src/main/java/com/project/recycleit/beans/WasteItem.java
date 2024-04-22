@@ -1,5 +1,6 @@
 package com.project.recycleit.beans;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 @Entity
@@ -8,18 +9,21 @@ public class WasteItem {
 
     @Id
     @GeneratedValue
+    @JsonProperty
     @Column(name="waste_item_id")
     private Long wasteItemId;
 
+    @JsonProperty
     @Column(name="name")
     private String name;
 
+    @JsonProperty
     @Column(name="recycle_color")
     private String recycleColor;
 
+    @JsonProperty
     @Column(name="recycle_info")
     private String recycleInfo;
-
 
 
     public WasteItem() {

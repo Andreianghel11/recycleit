@@ -26,6 +26,11 @@ public class UserAchievement {
     private Date timestamp;
 
     public UserAchievement() {
+        timestamp = new Date(System.currentTimeMillis());
+    }
+
+    public UserAchievement(Long userAchievementId) {
+        this.userAchievementId = userAchievementId;
     }
 
     public Long getUserAchievementId() {

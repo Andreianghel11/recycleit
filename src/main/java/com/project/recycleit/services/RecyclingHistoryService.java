@@ -4,9 +4,12 @@ import com.project.recycleit.beans.RecyclingHistory;
 import com.project.recycleit.beans.User;
 import com.project.recycleit.beans.WasteItem;
 import com.project.recycleit.dtos.RecyclingHistoryCreateDto;
+import com.project.recycleit.dtos.RecyclingHistoryDto;
+import com.project.recycleit.dtos.UserDto;
 import com.project.recycleit.exceptionHandler.ItemNotFoundException;
 import com.project.recycleit.exceptionHandler.UserNotFoundException;
 import com.project.recycleit.mappers.RecyclingHistoryMapper;
+import com.project.recycleit.mappers.UserMapper;
 import com.project.recycleit.repositories.RecyclingHistoryRepository;
 import com.project.recycleit.repositories.UserRepository;
 import com.project.recycleit.repositories.WasteItemRepository;
@@ -50,18 +53,18 @@ public class RecyclingHistoryService {
         recyclingHistoryRepository.save(recyclingHistory);
     }
 
-    public List<RecyclingHistory> getRecyclingHistory() {
+    public List<RecyclingHistoryDto> getRecyclingHistory() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         Optional<User> user = userRepository.findByEmail(username);
         if (user.isEmpty()) {
             throw new UserNotFoundException("User not found");
         } else {
-            Optional<List<RecyclingHistory>> recyclingHistory= recyclingHistoryRepository.findAllByUserUserId(user.get().getUserId());
+            Optional<List<RecyclingHistory>> recyclingHistory = recyclingHistoryRepository.findAllByUserUserId(user.get().getUserId());
             if (recyclingHistory.isEmpty()) {
                 throw new UserNotFoundException("Recycling history not found");
             } else {
-                return recyclingHistory.get();
+                return recyclingHistory.get().stream().map(RecyclingHistoryMapper::toRecyclingHistoryDto).toList();
             }
         }
     }
