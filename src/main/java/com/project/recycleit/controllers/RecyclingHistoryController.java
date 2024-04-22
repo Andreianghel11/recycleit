@@ -17,8 +17,9 @@ public class RecyclingHistoryController {
     RecyclingHistoryService recyclingHistoryService;
 
     @PostMapping("/addRecyclingHistory")
-    public void addRecyclingHistory(@RequestBody RecyclingHistoryCreateDto recyclingHistoryCreateDto) {
+    public ResponseEntity<String> addRecyclingHistory(@RequestBody RecyclingHistoryCreateDto recyclingHistoryCreateDto) {
         recyclingHistoryService.addRecyclingHistory(recyclingHistoryCreateDto);
+        return ResponseEntity.ok("Recycling History added successfully.");
     }
 
     @GetMapping("/getRecyclingHistory")

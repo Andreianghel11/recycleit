@@ -18,8 +18,9 @@ public class WasteItemController {
     private WasteItemService wasteItemService;
 
     @PostMapping("/addWasteItem")
-    public void addWasteItem(@RequestBody WasteItemCreateDto wasteItemCreateDto) {
+    public ResponseEntity<String> addWasteItem(@RequestBody WasteItemCreateDto wasteItemCreateDto) {
         wasteItemService.addWasteItem(wasteItemCreateDto);
+        return ResponseEntity.ok("Waste item added successfully.");
     }
 
     @GetMapping("/getAllWasteItems")
@@ -37,7 +38,8 @@ public class WasteItemController {
     }
 
     @DeleteMapping("/deleteWasteItem/{wasteItemId}")
-    public void deleteWasteItem(@PathVariable Long wasteItemId) {
+    public ResponseEntity<String > deleteWasteItem(@PathVariable Long wasteItemId) {
         wasteItemService.deleteWasteItem(wasteItemId);
+        return ResponseEntity.ok("Waste item deleted successfully.");
     }
 }

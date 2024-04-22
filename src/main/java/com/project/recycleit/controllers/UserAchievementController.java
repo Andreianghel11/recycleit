@@ -5,6 +5,7 @@ import com.project.recycleit.dtos.UserAchievementCreateDto;
 import com.project.recycleit.dtos.UserAchievementDto;
 import com.project.recycleit.services.UserAchievementService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,8 +18,9 @@ public class UserAchievementController {
     UserAchievementService userAchievementService;
 
     @PostMapping("/addUserAchievement")
-    public void addUserAchievement(@RequestBody UserAchievementCreateDto userAchievementCreateDto) {
+    public ResponseEntity<String> addUserAchievement(@RequestBody UserAchievementCreateDto userAchievementCreateDto) {
         userAchievementService.addUserAchievement(userAchievementCreateDto);
+        return ResponseEntity.ok("User Achievement added successfully.");
     }
 
     @GetMapping("/getAllUserAchievements")
