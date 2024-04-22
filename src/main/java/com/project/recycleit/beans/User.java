@@ -1,6 +1,9 @@
 package com.project.recycleit.beans;
 
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.sql.Date;
 import java.util.Collection;
@@ -8,20 +11,23 @@ import java.util.List;
 
 @Entity
 @Table(name="users")
-public class User {
+public class User implements UserDetails {
     @Id
     @GeneratedValue
     @Column(name="user_id")
     private Long userId;
-
-    @Column(name="username")
-    private String username;
 
     @Column(name="email")
     private String email;
 
     @Column(name="password_hash")
     private String passwordHash;
+
+    @Column(name="firstname")
+    private String firstname;
+
+    @Column(name="lastname")
+    private String lastname;
 
     @Column(name="created_at")
     private Date createdAt;
@@ -32,13 +38,19 @@ public class User {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy= "user")
     private List<UserAchievement> userAchievements;
 
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
     public User() {
     }
 
-    public User(String username, String email, String passwordHash) {
-        this.username = username;
+    public User(String email, String passwordHash, String firstname, String lastname) {
         this.email = email;
         this.passwordHash = passwordHash;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.role = Role.USER;
+        this.createdAt = new Date(System.currentTimeMillis());
     }
 
     public Long getUserId() {
@@ -49,12 +61,38 @@ public class User {
         this.userId = userId;
     }
 
-    public String getUsername() {
-        return username;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role.name()));
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    @Override
+    public String getPassword() {
+        return passwordHash;
+    }
+
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
     public String getEmail() {
@@ -71,6 +109,22 @@ public class User {
 
     public void setPasswordHash(String passwordHash) {
         this.passwordHash = passwordHash;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public Date getCreatedAt() {
@@ -95,5 +149,13 @@ public class User {
 
     public void setUserAchievements(List<UserAchievement> userAchievements) {
         this.userAchievements = userAchievements;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }
