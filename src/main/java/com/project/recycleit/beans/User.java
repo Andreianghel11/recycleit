@@ -32,16 +32,44 @@ public class User implements UserDetails {
     @Column(name="created_at")
     private Date createdAt;
 
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy= "user")
     private List<RecyclingHistory> recyclingHistory;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy= "user")
     private List<UserAchievement> userAchievements;
 
-    @Enumerated(EnumType.STRING)
-    private Role role;
-
     public User() {
+    }
+
+    public User(Long userId, String email, String passwordHash, String firstname, String lastname, Date createdAt, Role role) {
+        this.userId = userId;
+        this.email = email;
+        this.passwordHash = passwordHash;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.createdAt = createdAt;
+        this.role = role;
+    }
+
+    public User(String email, String passwordHash, String firstname, String lastname, Date createdAt, Role role) {
+        this.email = email;
+        this.passwordHash = passwordHash;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.createdAt = createdAt;
+        this.role = role;
+    }
+
+    public User(String email, String passwordHash, String firstname, String lastname, Role role) {
+        this.email = email;
+        this.passwordHash = passwordHash;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.createdAt = new Date(System.currentTimeMillis());
+        this.role = role;
     }
 
     public User(String email, String passwordHash, String firstname, String lastname) {
@@ -49,8 +77,8 @@ public class User implements UserDetails {
         this.passwordHash = passwordHash;
         this.firstname = firstname;
         this.lastname = lastname;
-        this.role = Role.USER;
         this.createdAt = new Date(System.currentTimeMillis());
+        this.role = Role.USER;
     }
 
     public Long getUserId() {

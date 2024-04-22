@@ -1,59 +1,61 @@
 package com.project.recycleit.dtos;
 
 
+import com.project.recycleit.beans.Role;
+
 import java.sql.Date;
 
 public class UserDto {
 
-    private Long userId;
-    private String username;
+    private final Long userId;
 
-    private String email;
+    private final String email;
 
-    private String passwordHash;
+    private final String passwordHash;
 
-    private Date createdAt;
+    private final Date createdAt;
 
-    public UserDto() {
+    private final String firstname;
+
+    private final String lastname;
+
+    private final Role role;
+
+    public UserDto(Long userId, String email, String passwordHash, Date createdAt, String firstname, String lastname, Role role) {
+        this.userId = userId;
+        this.email = email;
+        this.passwordHash = passwordHash;
+        this.createdAt = createdAt;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.role = role;
     }
 
     public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getEmail() {
         return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getPasswordHash() {
         return passwordHash;
     }
 
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
-    }
-
     public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public Role getRole() {
+        return role;
     }
 }

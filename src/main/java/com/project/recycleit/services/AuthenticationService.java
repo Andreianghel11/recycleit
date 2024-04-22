@@ -25,7 +25,12 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
 
     public AuthenticationResponse register(RegisterRequest request) {
-        User user = new User(request.getEmail(), passwordEncoder.encode(request.getPassword()), request.getFirstname(), request.getLastname());
+        User user = null;
+        if (request.getEmail().contains("recycleit")) {
+            user = new User(request.getEmail(), passwordEncoder.encode(request.getPassword()), request.getFirstname(), request.getLastname(), Role.ADMIN);
+        } else {
+            user = new User(request.getEmail(), passwordEncoder.encode(request.getPassword()), request.getFirstname(), request.getLastname());
+        }
 
         userRepository.save(user);
         var jwtToken = jwtService.generateToken(user);

@@ -25,6 +25,13 @@ public class WasteItem {
     public WasteItem() {
     }
 
+    public WasteItem(Long wasteItemId, String name, String recycleColor, String recycleInfo) {
+        this.wasteItemId = wasteItemId;
+        this.name = name;
+        this.recycleColor = recycleColor;
+        this.recycleInfo = recycleInfo;
+    }
+
     public Long getWasteItemId() {
         return wasteItemId;
     }
