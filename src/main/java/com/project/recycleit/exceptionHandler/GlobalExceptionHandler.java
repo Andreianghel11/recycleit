@@ -15,10 +15,16 @@ import java.sql.Date;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(IllegalArgumentException.class)
+    @ExceptionHandler(ItemNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ErrorResponse handleIllegalArgumentException(IllegalArgumentException ex) {
+    public ErrorResponse handleItemNotFoundException(ItemNotFoundException ex) {
         return new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage(), new Date(System.currentTimeMillis()));
+    }
+
+    @ExceptionHandler(UserExistsException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public ErrorResponse handleUserExistsException(UserExistsException ex) {
+        return new ErrorResponse(HttpStatus.CONFLICT.value(), ex.getMessage(), new Date(System.currentTimeMillis()));
     }
 
 }

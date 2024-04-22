@@ -6,6 +6,7 @@ import com.project.recycleit.authentication.RegisterRequest;
 import com.project.recycleit.beans.Role;
 import com.project.recycleit.beans.User;
 import com.project.recycleit.configs.JwtService;
+import com.project.recycleit.exceptionHandler.UserExistsException;
 import com.project.recycleit.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
@@ -25,6 +26,10 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
 
     public AuthenticationResponse register(RegisterRequest request) {
+        if (userRepository.existsByEmail(request.getEmail())) {
+            throw new UserExistsException("User already exists");
+        }
+
         User user = null;
         if (request.getEmail().contains("recycleit")) {
             user = new User(request.getEmail(), passwordEncoder.encode(request.getPassword()), request.getFirstname(), request.getLastname(), Role.ADMIN);
