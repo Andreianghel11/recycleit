@@ -34,4 +34,10 @@ public class AchievementController {
         return ResponseEntity.ok("Achievement deleted successfully.");
     }
 
+    @PutMapping("/updateAchievement/{achievementId}")
+    public ResponseEntity<String> updateAchievement(@PathVariable Long achievementId, @RequestBody AchievementCreateDto achievementCreateDto) {
+        achievementService.updateAchievement(achievementId, achievementCreateDto);
+        return ResponseEntity.ok("Achievement updated successfully.");
+    }
+
 }
