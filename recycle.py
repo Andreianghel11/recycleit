@@ -6,33 +6,6 @@ import keras
 import numpy as np
 from matplotlib import pyplot as plt
 
-#also shuffles the data
-#data = tf.keras.utils.image_dataset_from_directory('data')
-
-# Eliminates bad data
-# import cv2
-# import imghdr
-
-# data_dir = 'data' 
-# image_exts = ['jpeg','jpg', 'bmp', 'png']
-
-# for image_class in os.listdir(data_dir): 
-#     for image in os.listdir(os.path.join(data_dir, image_class)):
-#         image_path = os.path.join(data_dir, image_class, image)
-#         try: 
-#             img = cv2.imread(image_path)
-#             tip = imghdr.what(image_path)
-#             if tip not in image_exts: 
-#                 print('Image not in ext list {}'.format(image_path))
-#                 os.remove(image_path)
-#         except Exception as e: 
-#             print('Issue with image {}'.format(image_path))
-#             #os.remove(image_path)
-# test
-
-print(tf.__version__)
-print(keras.__version__)
-
 batch_size = 32
 img_height = 180
 img_width = 180
@@ -57,27 +30,11 @@ val_ds = keras.utils.image_dataset_from_directory(
 class_names = train_ds.class_names
 print(class_names)
 
-plt.figure(figsize=(10, 10))
-for images, labels in train_ds.take(1):
-    for i in range(9):
-        ax = plt.subplot(3, 3, i + 1)
-        plt.imshow(images[i].numpy().astype("uint8"))
-        plt.title(class_names[labels[i]])
-        plt.axis("off")
-
-#plt.show()
-
 
 for image_batch, labels_batch in train_ds:
   print(image_batch.shape)
   print(labels_batch.shape)
   break
-
-
-# AUTOTUNE = tf.data.AUTOTUNE
-
-# train_ds = train_ds.cache().prefetch(buffer_size=AUTOTUNE)
-# val_ds = val_ds.cache().prefetch(buffer_size=AUTOTUNE)
 
 
 num_classes = 10
@@ -92,7 +49,7 @@ model = keras.models.Sequential([
   keras.layers.MaxPooling2D(),
   keras.layers.Flatten(),
   keras.layers.Dense(128, activation='relu'),
-  keras.layers.Dense(num_classes)
+  keras.layers.Dense(num_classes, activation='softmax')
 ])
 
 model.compile(
@@ -101,72 +58,24 @@ model.compile(
   metrics=['accuracy'])
 
 
-model.fit(
+hist = model.fit(
   train_ds,
   validation_data=val_ds,
-  epochs=20
+  epochs=10
 )
 
-
-# Scalare
-#data = data.map(lambda x,y: (x/255, y))
-
-# data_iterator = data.as_numpy_iterator()
-# batch = data_iterator.next()
-# batch[0].min()
-
-# # Show images
-
-# fig, ax = plt.subplots(ncols=10, figsize=(10,10))
-# for idx, img in enumerate(batch[0][:10]):
-#     ax[idx].imshow(img.astype(int))
-#     ax[idx].title.set_text(batch[1][idx])
-    
-# plt.show()
+fig = plt.figure()
+plt.plot(hist.history['loss'], color='teal', label='loss')
+plt.plot(hist.history['val_loss'], color='orange', label='val_loss')
+fig.suptitle('Loss', fontsize=20)
+plt.legend(loc="upper left")
+plt.savefig('loss')
 
 
-# Split train, validare, test
-
-# dataset_size = len(data)
-# train_size = int(dataset_size * .7)
-# validation_size = int(dataset_size * .2) + 1
-# test_size = int(dataset_size * .1) + 1
-
-# print(dataset_size)
-# print(train_size, "\n", validation_size, "\n", test_size)
-
-# train = data.take(train_size)
-# remaining = data.skip(train_size)
-# validation = remaining.take(validation_size)
-# test = remaining.skip(validation_size)
-
-# for images, labels in data:
-#     print(labels)
-
-
-
-# print("train")
-# i = 0
-# for images, labels in train:
-#     i = i + 1
-#     print(labels)
-#     if i == 10:
-#         break
-
-# print("validation")
-# i = 0
-# for images, labels in validation:
-#     i = i + 1
-#     print(labels)
-#     if i == 10:
-#         break
-
-# print("test")
-# i = 0
-# for images, labels in test:
-#     i = i + 1
-#     print(labels)
-#     if i == 10:
-#         break
-
+fig = plt.figure()
+plt.plot(hist.history['accuracy'], color='teal', label='accuracy')
+plt.plot(hist.history['val_accuracy'], color='orange', label='val_accuracy')
+fig.suptitle('Accuracy', fontsize=20)
+plt.legend(loc="upper left")
+plt.savefig('accuracy')
 
