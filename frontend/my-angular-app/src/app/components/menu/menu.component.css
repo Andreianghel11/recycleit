@@ -1,18 +1,7 @@
-.logo-container-small {
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  background-color: #89cdbe;
-  height: 10vh;
-  width: 100vw;
-}
-
-.logo {
-  width: 20%; /* Adjust the percentage as needed */
-  height: auto; /* Maintain aspect ratio */
-  max-width: 150px; /* Ensure the image does not grow too large */
-  border-radius: 50%;
-  margin-left: 20px;
+.container {
+  height: 100%;
+  background-color: #d2e1dd;
+  overflow: auto;
 }
 
 .menu-container {
@@ -21,7 +10,6 @@
   align-items: center;
   background-color: #d2e1dd;
   height: 90vh;
-  overflow: scroll;
   width: 100vw;
 }
 
@@ -34,7 +22,8 @@
   border-radius: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 80%;
-  height: 15%;
+  height: 20%;
+  min-height: 20%;
   max-width: 400px;
   margin: 10px;
 }

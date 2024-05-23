@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/wasteItem")
+@RequestMapping("/api/wasteItem")
 @PreAuthorize("hasRole('ADMIN')")
 public class WasteItemController {
     @Autowired

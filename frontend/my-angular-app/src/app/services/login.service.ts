@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {catchError, map, Observable, throwError} from "rxjs";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  private apiUrl = 'http://localhost:8080/api/v1/auth/authenticate';
+  private apiUrl = 'http://localhost:8080/api/auth/authenticate';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   login(email: string, password: string): Observable<any> {
     const loginData = { email, password };
@@ -44,6 +45,7 @@ export class LoginService {
   logout() {
     if (typeof window !== 'undefined')
       localStorage.removeItem('authToken');
+    this.router.navigate(['/login']);
   }
 
   getToken(): string | null {

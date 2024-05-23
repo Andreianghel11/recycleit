@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/recyclingHistory")
+@RequestMapping("/api/recyclingHistory")
 public class RecyclingHistoryController {
     @Autowired
     RecyclingHistoryService recyclingHistoryService;

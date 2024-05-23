@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
-
+    //"http://192.168.100.2:4200",
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/api/**")
