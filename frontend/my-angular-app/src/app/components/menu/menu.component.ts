@@ -11,12 +11,17 @@ import {Router} from "@angular/router";
 export class MenuComponent {
   photo: string | ArrayBuffer | null = null;
 
-  constructor(private photoService: PhotoService, private loginService: LoginService) {
+  constructor(private photoService: PhotoService, private loginService: LoginService, private router: Router) {
 
   }
 
   onCameraClick(fileInput: HTMLInputElement) {
+    this.photoService.clearResult();
     fileInput.click();
+  }
+
+  onLastScansClick() {
+    this.router.navigate(['/last-scans']);
   }
 
   onLogoutClick() {
@@ -29,7 +34,8 @@ export class MenuComponent {
       const reader = new FileReader();
       reader.onload = (e) => {
         this.photo = (e.target as FileReader).result;
-        this.photoService.uploadPhoto(this.photo);
+        this.router.navigate(['/result-page']);
+        this.photoService.uploadPhoto(this.photo).subscribe();
       };
       reader.readAsDataURL(input.files[0]);
     }

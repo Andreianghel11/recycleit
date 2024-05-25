@@ -1,5 +1,7 @@
 package com.project.recycleit.services;
 
+import com.project.recycleit.dtos.WasteItemDto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +11,10 @@ import java.util.Map;
 
 @Service
 public class PredictionService {
-    public String predictImage(Map<String, String> payload) {
+    @Autowired
+    private WasteItemService wasteItemService;
+
+    public WasteItemDto predictImage(Map<String, String> payload) {
         String imageData = payload.get("image");
 
         byte[] imageBytes = Base64.getDecoder().decode(imageData.split(",")[1]);
@@ -23,12 +28,12 @@ public class PredictionService {
             }
             // Process the image and return the class
             String result = runPythonScriptInWsl();
-            return result;
+            return wasteItemService.getWasteItemByName(result);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "Error processing image";
+        return null;
     }
 
     private String runPythonScriptInWsl() {

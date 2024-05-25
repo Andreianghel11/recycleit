@@ -28,4 +28,14 @@ public class WasteItemDto {
     public String getRecycleInfo() {
         return recycleInfo;
     }
+
+    @Override
+    public String toString() {
+        return "WasteItemDto{" +
+                "wasteItemId=" + wasteItemId +
+                ", name='" + name + '\'' +
+                ", recycleColor='" + recycleColor + '\'' +
+                ", recycleInfo='" + recycleInfo + '\'' +
+                '}';
+    }
 }

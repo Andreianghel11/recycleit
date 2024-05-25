@@ -12,11 +12,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/wasteItem")
-@PreAuthorize("hasRole('ADMIN')")
 public class WasteItemController {
     @Autowired
     private WasteItemService wasteItemService;
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/addWasteItem")
     public ResponseEntity<String> addWasteItem(@RequestBody WasteItemCreateDto wasteItemCreateDto) {
         wasteItemService.addWasteItem(wasteItemCreateDto);
@@ -37,6 +37,14 @@ public class WasteItemController {
         return ResponseEntity.ok(wasteItemDto);
     }
 
+    @GetMapping("/getWasteItemByName/{wasteItemName}")
+    @ResponseBody
+    public ResponseEntity<WasteItemDto> getWasteItemByName(@PathVariable String wasteItemName) {
+        WasteItemDto wasteItemDto = wasteItemService.getWasteItemByName(wasteItemName);
+        return ResponseEntity.ok(wasteItemDto);
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/deleteWasteItem/{wasteItemId}")
     public ResponseEntity<String > deleteWasteItem(@PathVariable Long wasteItemId) {
         wasteItemService.deleteWasteItem(wasteItemId);

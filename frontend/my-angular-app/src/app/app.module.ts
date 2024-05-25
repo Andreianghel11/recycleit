@@ -8,18 +8,18 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/http";
 import {LoginInterceptor} from "./services/login.interceptor";
 import { MenuComponent } from './components/menu/menu.component';
-import { CameraCaptureComponent } from './components/camera-capture/camera-capture.component';
 import { ResultPageComponent } from './components/result-page/result-page.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { LastScansComponent } from './components/last-scans/last-scans.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     MenuComponent,
-    CameraCaptureComponent,
     ResultPageComponent,
-    NavbarComponent
+    NavbarComponent,
+    LastScansComponent
   ],
   imports: [
     BrowserModule,

@@ -1,8 +1,10 @@
 package com.project.recycleit.controllers;
 
 import com.project.recycleit.beans.RecyclingHistory;
+import com.project.recycleit.dtos.ApiResponse;
 import com.project.recycleit.dtos.RecyclingHistoryCreateDto;
 import com.project.recycleit.dtos.RecyclingHistoryDto;
+import com.project.recycleit.dtos.RecyclingHistoryUserDto;
 import com.project.recycleit.services.RecyclingHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,13 +19,19 @@ public class RecyclingHistoryController {
     RecyclingHistoryService recyclingHistoryService;
 
     @PostMapping("/addRecyclingHistory")
-    public ResponseEntity<String> addRecyclingHistory(@RequestBody RecyclingHistoryCreateDto recyclingHistoryCreateDto) {
+    public ResponseEntity<ApiResponse> addRecyclingHistory(@RequestBody RecyclingHistoryCreateDto recyclingHistoryCreateDto) {
         recyclingHistoryService.addRecyclingHistory(recyclingHistoryCreateDto);
-        return ResponseEntity.ok("Recycling History added successfully.");
+        ApiResponse response = new ApiResponse("Recycling history added successfully", null);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/getRecyclingHistory")
     public List<RecyclingHistoryDto> getRecyclingHistory() {
         return recyclingHistoryService.getRecyclingHistory();
+    }
+
+    @GetMapping("/getRecyclingHistoryUser")
+    public List<RecyclingHistoryUserDto> getRecyclingHistoryByUser() {
+        return recyclingHistoryService.getRecyclingHistoryUser();
     }
 }

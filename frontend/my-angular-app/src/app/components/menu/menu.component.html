@@ -9,7 +9,7 @@
     <input type="file" accept="image/*" capture="environment" (change)="onFileChange($event)" #fileInput style="display: none;">
     <img *ngIf="photo" [src]="photo" alt="Captured Photo" class="captured-photo">
 
-    <div class="menu-item">
+    <div class="menu-item" (click)="onLastScansClick()">
       <img src="assets/history.png" alt="History" class="icon">
       <div class="noto-sans-text-style text">Last Scans</div>
     </div>

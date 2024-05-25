@@ -1,6 +1,7 @@
 package com.project.recycleit.controllers;
 
 import com.project.recycleit.dtos.AchievementCreateDto;
+import com.project.recycleit.dtos.WasteItemDto;
 import com.project.recycleit.services.PredictionService;
 import com.project.recycleit.services.RecyclingHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,17 +27,17 @@ public class PredictionController {
     PredictionService predictionService;
 
     @PostMapping("/predict")
-    public ResponseEntity<Map<String, String>> predictImage(@RequestBody Map<String, String> payload) {
-        String result = predictionService.predictImage(payload);
-
-//        System.out.println("result in controller: " + result);
+    public ResponseEntity<WasteItemDto> predictImage(@RequestBody Map<String, String> payload) {
+        WasteItemDto wasteItemDto = predictionService.predictImage(payload);
+        System.out.println(wasteItemDto);
 //        HttpHeaders headers = new HttpHeaders();
-//        headers.add("Content-Type", "text/plain");
-//        return new ResponseEntity<>(result, headers, HttpStatus.OK);
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Type", "application/json");
-        Map<String, String> response = new HashMap<>();
-        response.put("result", result);
-        return new ResponseEntity<>(response, headers, HttpStatus.OK);
+//        headers.add("Content-Type", "application/json");
+//        Map<String, String> response = new HashMap<>();
+//        response.put("result", result);
+        if (wasteItemDto == null) {
+            return ResponseEntity.internalServerError().build();
+        } else {
+            return ResponseEntity.ok(wasteItemDto);
+        }
     }
 }

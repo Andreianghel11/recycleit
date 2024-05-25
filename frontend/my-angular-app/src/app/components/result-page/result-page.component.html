@@ -1,0 +1,38 @@
+<div class="container">
+  <app-navbar></app-navbar>
+  <div class="results-container">
+
+    <div *ngIf="!imageUrl || !result" class="loading-container">
+      <div class="spinner"></div>
+      <div class="noto-sans-text-style text loading-text">Processing image...</div>
+    </div>
+
+    <div *ngIf="imageUrl && result" class="result-item">
+      <div class="column1">
+        <img [src]="imageUrl" alt="Processed Image" class="icon">
+      </div>
+      <div class="column2">
+        <div class="noto-sans-text-style text-title">{{result.name}}</div>
+        <div class="noto-sans-text-style text-info">{{result.recycleInfo}}</div>
+        <div class="noto-sans-text-style text-color">{{result.recycleColor}} Bin</div>
+      </div>
+      <div class="column3">
+        Some other buttons
+      </div>
+    </div>
+
+    <div *ngIf="imageUrl && result && recylingFactDto" class="fact">
+      <div class="noto-sans-text-style text-title-fact">
+        Did you know that...
+      </div>
+      <div class="noto-sans-text-style text-fact">
+        {{recylingFactDto.fact}}
+      </div>
+    </div>
+
+    <div *ngIf="imageUrl && result" class="result-item">
+      The profile
+    </div>
+
+  </div>
+</div>

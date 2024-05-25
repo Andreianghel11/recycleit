@@ -44,5 +44,14 @@ public class WasteItemService {
         }
     }
 
+    public WasteItemDto getWasteItemByName(String wasteItemName) {
+        Optional<WasteItem> wasteItem = wasteItemRepository.findByName(wasteItemName);
+        if (wasteItem.isPresent()) {
+            return WasteItemMapper.toWasteItemDto(wasteItem.get());
+        } else {
+            throw new ItemNotFoundException("Waste item not found");
+        }
+    }
+
 
 }

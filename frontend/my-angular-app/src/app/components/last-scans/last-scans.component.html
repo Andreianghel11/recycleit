@@ -1,0 +1,25 @@
+<div class="container">
+  <app-navbar></app-navbar>
+
+  <div *ngIf="recyclingHistory.length > 0; else noData" class="last-scans-container">
+      <div *ngFor="let item of recyclingHistory" class="last-scans-item">
+        <div class="column1">
+          <img src="assets/waste/{{item.wasteItem.name}}.png" alt="Processed Image" class="icon">
+        </div>
+        <div class="column2">
+          <div class="noto-sans-text-style text-title">{{item.wasteItem.name}}</div>
+          <div class="noto-sans-text-style text-info">Quantity: {{item.quantity}}</div>
+          <div class="noto-sans-text-style text-color">{{item.wasteItem.recycleColor}} Bin</div>
+          <div class="noto-sans-text-style text-timestamp">{{item.timestamp | date:'mediumDate'}}</div>
+        </div>
+        <div class="column3">
+          Some other buttons
+        </div>
+      </div>
+    </div>
+    <ng-template #noData>
+      <p>No recycling history available.</p>
+    </ng-template>
+
+</div>
+

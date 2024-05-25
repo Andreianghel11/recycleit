@@ -29,7 +29,7 @@ predictions = model.predict(img_array)
 
 predicted_class = np.argmax(predictions, axis=1)
 
-class_names = ['battery', 'biological', 'cardboard', 'clothes', 'glass', 'metal', 'paper', 'plastic', 'shoes', 'trash']  # Replace with your actual class names
+class_names = ['Battery', 'Biological', 'Cardboard', 'Clothes', 'Glass', 'Metal', 'Paper', 'Plastic', 'Shoes', 'Trash']  # Replace with your actual class names
 # print(f'Predicted class name: {class_names[predicted_class[0]]}')
 
 with open('result.txt', 'w') as file:
