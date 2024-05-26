@@ -1,0 +1,80 @@
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #89cdbe;
+  height: 25vh;
+  width: 100vw;
+}
+
+.logo {
+  width: 50%; /* Adjust the percentage as needed */
+  height: auto; /* Maintain aspect ratio */
+  max-width: 150px; /* Ensure the image does not grow too large */
+  border-radius: 50%;
+}
+
+.register-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #d2e1dd;
+  height: 100vh;
+  width: 100vw;
+}
+
+.register-form-container {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 400px;
+  margin: 50px;
+}
+
+h2 {
+  color: #003366;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.text-color {
+  color: grey;
+}
+
+.form-control {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid grey;
+  margin-top: 10px;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.btn {
+  background-color: #010144;
+  border-color: #010144;
+  color: #ffffff;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+  text-align: left;
+  margin-bottom: 5px;
+}

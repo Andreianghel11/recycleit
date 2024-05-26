@@ -11,6 +11,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { ResultPageComponent } from './components/result-page/result-page.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LastScansComponent } from './components/last-scans/last-scans.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { LastScansComponent } from './components/last-scans/last-scans.component
     MenuComponent,
     ResultPageComponent,
     NavbarComponent,
-    LastScansComponent
+    LastScansComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

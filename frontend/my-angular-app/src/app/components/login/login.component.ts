@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {LoginService} from "../../services/login.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
+import {LoginDto} from "../../dtos/login.dto";
 
 @Component({
   selector: 'app-login',
@@ -31,8 +32,8 @@ export class LoginComponent {
   onSubmit() {
     console.log(this.loginForm.value);
     if (this.loginForm.valid) {
-      const { email, password } = this.loginForm.value;
-      this.loginService.login(email, password).subscribe(
+      const loginDto : LoginDto = this.loginForm.value;
+      this.loginService.login(loginDto).subscribe(
         response => {
           // Handle successful response
           console.log('Login successful:', response);
@@ -51,5 +52,7 @@ export class LoginComponent {
     }
   }
 
-  protected readonly console = console;
+  onRegisterClick() {
+    this.router.navigate(['/register']);
+  }
 }
