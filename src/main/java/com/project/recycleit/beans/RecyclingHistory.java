@@ -27,22 +27,27 @@ public class RecyclingHistory {
     @Column(name="recycled_at")
     private Date timestamp;
 
+    @Column(name="image")
+    private String image;
+
     public RecyclingHistory() {
     }
 
-    public RecyclingHistory(User user, WasteItem wasteItem, int quantity, Date timestamp) {
+    public RecyclingHistory(User user, WasteItem wasteItem, int quantity, Date timestamp, String image) {
         this.user = user;
         this.wasteItem = wasteItem;
         this.quantity = quantity;
         this.timestamp = timestamp;
+        this.image = image;
     }
 
     public RecyclingHistory(Long wasteItemId, int quantity) {
         timestamp = new Date(System.currentTimeMillis());
     }
 
-    public RecyclingHistory(int quantity) {
+    public RecyclingHistory(int quantity, String image){
         this.quantity = quantity;
+        this.image = image;
         timestamp = new Date(System.currentTimeMillis());
     }
 
@@ -84,5 +89,13 @@ public class RecyclingHistory {
 
     public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

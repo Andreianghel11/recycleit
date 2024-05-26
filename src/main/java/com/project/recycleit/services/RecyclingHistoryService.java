@@ -19,6 +19,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,7 +35,9 @@ public class RecyclingHistoryService {
     private UserRepository userRepository;
 
     public void addRecyclingHistory(RecyclingHistoryCreateDto recyclingHistoryCreateDto) {
+        System.out.println("Fto is: " + recyclingHistoryCreateDto);
         RecyclingHistory recyclingHistory = RecyclingHistoryMapper.toRecyclingHistory(recyclingHistoryCreateDto);
+        System.out.println("Image is: " + recyclingHistory.getImage());
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();

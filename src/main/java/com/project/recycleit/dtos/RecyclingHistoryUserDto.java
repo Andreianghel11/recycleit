@@ -17,16 +17,21 @@ public class RecyclingHistoryUserDto {
     @JsonProperty
     private final Date timestamp;
 
-    public RecyclingHistoryUserDto(WasteItem wasteItem, int quantity, Date timestamp) {
+    @JsonProperty
+    private final String image;
+
+    public RecyclingHistoryUserDto(WasteItem wasteItem, int quantity, Date timestamp, String image) {
         this.wasteItem = wasteItem;
         this.quantity = quantity;
         this.timestamp = timestamp;
+        this.image = image;
     }
 
     public RecyclingHistoryUserDto(RecyclingHistory recyclingHistory) {
         this.wasteItem = recyclingHistory.getWasteItem();
         this.quantity = recyclingHistory.getQuantity();
         this.timestamp = recyclingHistory.getTimestamp();
+        this.image = recyclingHistory.getImage();
     }
 
 }

@@ -4,4 +4,5 @@ export interface RecyclingHistoryUserDto {
   wasteItem: WasteItemDto;
   quantity: number;
   timestamp: Date;
+  image: string;
 }

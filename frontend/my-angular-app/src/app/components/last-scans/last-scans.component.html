@@ -4,7 +4,7 @@
   <div *ngIf="recyclingHistory.length > 0; else noData" class="last-scans-container">
       <div *ngFor="let item of recyclingHistory" class="last-scans-item">
         <div class="column1">
-          <img src="assets/waste/{{item.wasteItem.name}}.png" alt="Processed Image" class="icon">
+          <img [src]="item.image ? item.image : 'assets/notFound.png'" alt="Processed Image" class="icon">
         </div>
         <div class="column2">
           <div class="noto-sans-text-style text-title">{{item.wasteItem.name}}</div>

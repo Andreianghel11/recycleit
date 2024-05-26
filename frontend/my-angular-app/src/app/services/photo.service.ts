@@ -25,7 +25,7 @@ export class PhotoService {
         tap(response => {
           this.resultSubject.next({ imageUrl: photo, result: response});
           if (response) {
-            this.recyclingHistoryService.addRecyclingHistoryItem(response.wasteItemId, 1);
+            this.recyclingHistoryService.addRecyclingHistoryItem(response.wasteItemId, 1, photo);
           }
         }),
         catchError((error: HttpErrorResponse) => {

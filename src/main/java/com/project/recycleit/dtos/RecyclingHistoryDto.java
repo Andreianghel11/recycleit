@@ -27,12 +27,16 @@ public class RecyclingHistoryDto {
     @JsonProperty
     private final Date timestamp;
 
-    public RecyclingHistoryDto(Long recyclingHistoryId, UserDto user, WasteItem wasteItem, int quantity, Date timestamp) {
+    @JsonProperty
+    private final String image;
+
+    public RecyclingHistoryDto(Long recyclingHistoryId, UserDto user, WasteItem wasteItem, int quantity, Date timestamp, String image) {
         this.recyclingHistoryId = recyclingHistoryId;
         this.user = user;
         this.wasteItem = wasteItem;
         this.quantity = quantity;
         this.timestamp = timestamp;
+        this.image = image;
     }
 
     public RecyclingHistoryDto(RecyclingHistory recyclingHistory) {
@@ -41,5 +45,6 @@ public class RecyclingHistoryDto {
         this.wasteItem = recyclingHistory.getWasteItem();
         this.quantity = recyclingHistory.getQuantity();
         this.timestamp = recyclingHistory.getTimestamp();
+        this.image = recyclingHistory.getImage();
     }
 }

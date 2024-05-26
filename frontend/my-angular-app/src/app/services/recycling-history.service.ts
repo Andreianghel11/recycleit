@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {RecyclingHistoryUserDto} from "../dtos/recyclingHistoryUser.dto";
+import {RecyclingHistoryCreateDto} from "../dtos/recyclingHistoryCreate.dto";
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +12,12 @@ export class RecyclingHistoryService {
   private apiUrlGetRecyclingHistoryUser = 'http://localhost:8080/api/recyclingHistory/getRecyclingHistoryUser';
   constructor(private http: HttpClient) { }
 
-  addRecyclingHistoryItem(wasteItemId: number, quantity: number) {
+  addRecyclingHistoryItem(wasteItemId: number, quantity: number, image: string | ArrayBuffer | null) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const payload = { wasteItemId, quantity };
+    const recyclingHistoryCreateDto : RecyclingHistoryCreateDto = {wasteItemId, quantity, image}
+    console.log("Addind recycling history item: ", recyclingHistoryCreateDto);
 
-    return this.http.post(this.apiUrlAddRecyclingHistory, payload, {headers}).subscribe(
+    return this.http.post(this.apiUrlAddRecyclingHistory, recyclingHistoryCreateDto, {headers}).subscribe(
       (response) => {
         console.log('Successfully added recycling history item', response);
       },

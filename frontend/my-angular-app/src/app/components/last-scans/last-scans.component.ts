@@ -16,7 +16,7 @@ export class LastScansComponent {
 
   ngOnInit(): void {
     this.recyclingHistoryService.getRecyclingHistoryUser().subscribe(data => {
-      this.recyclingHistory = data;
+      this.recyclingHistory = data.reverse();
       console.log('Recycling history:', this.recyclingHistory);
     }, error => {
       console.error('Error fetching recycling history:', error);

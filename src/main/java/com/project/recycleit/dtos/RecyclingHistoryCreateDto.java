@@ -5,10 +5,13 @@ public class RecyclingHistoryCreateDto {
 
     private final int quantity;
 
+    private final String image;
 
-    public RecyclingHistoryCreateDto(Long wasteItemId, int quantity) {
+
+    public RecyclingHistoryCreateDto(Long wasteItemId, int quantity, String image) {
         this.wasteItemId = wasteItemId;
         this.quantity = quantity;
+        this.image = image;
     }
 
     public Long getWasteItemId() {
@@ -17,5 +20,18 @@ public class RecyclingHistoryCreateDto {
 
     public int getQuantity() {
         return quantity;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    @Override
+    public String toString() {
+        return "RecyclingHistoryCreateDto{" +
+                "wasteItemId=" + wasteItemId +
+                ", quantity=" + quantity +
+                ", image='" + image + '\'' +
+                '}';
     }
 }
