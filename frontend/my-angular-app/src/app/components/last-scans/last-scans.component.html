@@ -1,7 +1,7 @@
 <div class="container">
   <app-navbar></app-navbar>
 
-  <div *ngIf="recyclingHistory.length > 0; else noData" class="last-scans-container">
+  <div *ngIf="recyclingHistory.length > 0" class="last-scans-container">
       <div *ngFor="let item of recyclingHistory" class="last-scans-item">
         <div class="column1">
           <img [src]="item.image ? item.image : 'assets/notFound.png'" alt="Processed Image" class="icon">
@@ -13,13 +13,14 @@
           <div class="noto-sans-text-style text-timestamp">{{item.timestamp | date:'mediumDate'}}</div>
         </div>
         <div class="column3">
-          Some other buttons
+          <app-report-button [image]="item.image"></app-report-button>
+          <img class="delete-button" src="assets/delete.png" (click)="openConfirmationDialog(item.id)">
         </div>
       </div>
     </div>
-    <ng-template #noData>
-      <p>No recycling history available.</p>
-    </ng-template>
+<!--    <ng-template #noData>-->
+<!--      <p>No recycling history available.</p>-->
+<!--    </ng-template>-->
 
 </div>
 

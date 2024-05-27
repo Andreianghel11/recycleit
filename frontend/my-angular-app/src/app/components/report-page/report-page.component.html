@@ -1,0 +1,23 @@
+<div class="container">
+  <app-navbar></app-navbar>
+
+  <div class="report-page-container">
+    <div class="form-item">
+      <div class="noto-sans-text-style text-title">Select an option:</div>
+      <form [formGroup]="reportForm" (ngSubmit)="onSubmit()">
+        <div class="form-group" *ngFor="let option of options">
+          <label class="form-option">
+            <input type="radio" formControlName="selectedOption" [value]="option.value">
+              {{ option.label }}
+          </label>
+        </div>
+        <div *ngIf="warningMessage" class="noto-sans-text-style error-message">{{warningMessage}}</div>
+        <div class="button-container">
+          <button type="submit" class="btn">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>
+

@@ -89,4 +89,13 @@ public class RecyclingHistoryService {
             }
         }
     }
+
+    public void deleteRecyclingHistory(Long id) {
+        Optional<RecyclingHistory> recyclingHistory = recyclingHistoryRepository.findById(id);
+        if (recyclingHistory.isEmpty()) {
+            throw new ItemNotFoundException("Recycling history not found");
+        } else {
+            recyclingHistoryRepository.delete(recyclingHistory.get());
+        }
+    }
 }

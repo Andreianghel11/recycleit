@@ -1,0 +1,77 @@
+.container {
+  height: 100%;
+  background-color: #d2e1dd;
+  overflow: auto;
+}
+
+.report-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #d2e1dd;
+  height: 90vh;
+  width: 100vw;
+}
+
+.form-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  height: 76%;
+  min-height: 20%;
+  max-width: 400px;
+  margin: 10px;
+  padding-top: 15px;
+}
+
+.text-title {
+  color: #010144;
+  margin: 10px;
+  text-align: center;
+  font-size: x-large;
+}
+
+.form-group {
+  margin-bottom: 20px; /* Increase the margin bottom for more space between options */
+}
+
+input[type="radio"] {
+  width: 20px;  /* Increase the size of the radio button */
+  height: 20px; /* Increase the size of the radio button */
+}
+
+.form-option {
+  width: 100%;
+  font-size: 25px;
+  margin: 10px;
+  padding: 10px;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  width: 100%;
+  height: 100%;
+  background-color: #010144;
+  border-color: #010144;
+  color: #ffffff;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+  text-align: left;
+}

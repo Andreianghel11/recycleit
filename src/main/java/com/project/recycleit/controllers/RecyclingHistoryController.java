@@ -34,4 +34,12 @@ public class RecyclingHistoryController {
     public List<RecyclingHistoryUserDto> getRecyclingHistoryByUser() {
         return recyclingHistoryService.getRecyclingHistoryUser();
     }
+
+    @DeleteMapping("/deleteRecyclingHistory/{id}")
+    public ResponseEntity<ApiResponse> deleteRecyclingHistory(@PathVariable Long id) {
+        System.out.println("id: " + id);
+        recyclingHistoryService.deleteRecyclingHistory(id);
+        ApiResponse response = new ApiResponse("Recycling history deleted successfully", null);
+        return ResponseEntity.ok(response);
+    }
 }

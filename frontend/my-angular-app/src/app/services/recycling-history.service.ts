@@ -10,6 +10,7 @@ import {RecyclingHistoryCreateDto} from "../dtos/recyclingHistoryCreate.dto";
 export class RecyclingHistoryService {
   private apiUrlAddRecyclingHistory = 'http://localhost:8080/api/recyclingHistory/addRecyclingHistory';
   private apiUrlGetRecyclingHistoryUser = 'http://localhost:8080/api/recyclingHistory/getRecyclingHistoryUser';
+  private apiUrlDeleteRecyclingHistory = 'http://localhost:8080/api/recyclingHistory/deleteRecyclingHistory';
   constructor(private http: HttpClient) { }
 
   addRecyclingHistoryItem(wasteItemId: number, quantity: number, image: string | ArrayBuffer | null) {
@@ -29,5 +30,17 @@ export class RecyclingHistoryService {
 
   getRecyclingHistoryUser(): Observable<RecyclingHistoryUserDto[]> {
     return this.http.get<RecyclingHistoryUserDto[]>(this.apiUrlGetRecyclingHistoryUser);
+  }
+
+  deleteRecyclingHistory(id: number) {
+    console.log('Deleting recycling history item with id:', id);
+    return this.http.delete(this.apiUrlDeleteRecyclingHistory + '/' + id).subscribe(
+      (response) => {
+        console.log('Successfully deleted recycling history item', response);
+      },
+      error => {
+        console.error('Error deleting recycling history item:', error);
+      }
+    );
   }
 }

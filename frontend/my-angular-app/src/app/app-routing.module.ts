@@ -6,6 +6,7 @@ import {MenuComponent} from "./components/menu/menu.component";
 import {ResultPageComponent} from "./components/result-page/result-page.component";
 import {LastScansComponent} from "./components/last-scans/last-scans.component";
 import {RegisterComponent} from "./components/register/register.component";
+import {ReportPageComponent} from "./components/report-page/report-page.component";
 
 
 const routes: Routes = [
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'menu', component: MenuComponent, canActivate: [LoginGuard] },
   { path: 'result-page', component: ResultPageComponent, canActivate: [LoginGuard]},
   { path: 'last-scans', component: LastScansComponent, canActivate: [LoginGuard] },
-  {path: 'register', component: RegisterComponent},
+  { path: 'register', component: RegisterComponent },
+  { path: 'report-page/:image', component: ReportPageComponent, canActivate: [LoginGuard] },
   // Add other routes here
   { path: '**', redirectTo: '/login' } // Wildcard route for a 404 page (optional)
 ];

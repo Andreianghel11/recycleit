@@ -48,6 +48,9 @@ export class LoginService {
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong.
+      if (error.status === 401) {
+        errorMessage = 'The username or password is incorrect';
+      } else
       if (error.status === 409) {
         errorMessage = 'The user already exists';
       }

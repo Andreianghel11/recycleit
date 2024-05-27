@@ -12,6 +12,12 @@ import { ResultPageComponent } from './components/result-page/result-page.compon
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LastScansComponent } from './components/last-scans/last-scans.component';
 import { RegisterComponent } from './components/register/register.component';
+import { ReportButtonComponent } from './components/report-button/report-button.component';
+import { ReportPageComponent } from './components/report-page/report-page.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -22,18 +28,24 @@ import { RegisterComponent } from './components/register/register.component';
     NavbarComponent,
     LastScansComponent,
     RegisterComponent,
+    ReportButtonComponent,
+    ReportPageComponent,
+    ConfirmationDialogComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatButtonModule
   ],
   providers: [
     LoginInterceptor,
     { provide: HTTP_INTERCEPTORS, useClass: LoginInterceptor, multi: true },
-    provideClientHydration()
+    provideClientHydration(),
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })

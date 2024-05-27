@@ -7,6 +7,8 @@ import com.project.recycleit.beans.WasteItem;
 import java.sql.Date;
 
 public class RecyclingHistoryUserDto {
+    @JsonProperty
+    private final Long id;
 
     @JsonProperty
     private final WasteItem wasteItem;
@@ -20,7 +22,8 @@ public class RecyclingHistoryUserDto {
     @JsonProperty
     private final String image;
 
-    public RecyclingHistoryUserDto(WasteItem wasteItem, int quantity, Date timestamp, String image) {
+    public RecyclingHistoryUserDto(Long id, WasteItem wasteItem, int quantity, Date timestamp, String image) {
+        this.id = id;
         this.wasteItem = wasteItem;
         this.quantity = quantity;
         this.timestamp = timestamp;
@@ -28,6 +31,7 @@ public class RecyclingHistoryUserDto {
     }
 
     public RecyclingHistoryUserDto(RecyclingHistory recyclingHistory) {
+        this.id = recyclingHistory.getRecyclingHistoryId();
         this.wasteItem = recyclingHistory.getWasteItem();
         this.quantity = recyclingHistory.getQuantity();
         this.timestamp = recyclingHistory.getTimestamp();
