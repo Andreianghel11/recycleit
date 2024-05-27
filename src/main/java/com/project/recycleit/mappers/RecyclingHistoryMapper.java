@@ -7,7 +7,7 @@ import com.project.recycleit.dtos.RecyclingHistoryUserDto;
 
 public class RecyclingHistoryMapper {
     public static RecyclingHistory toRecyclingHistory(RecyclingHistoryCreateDto recyclingHistoryCreateDto) {
-        return new RecyclingHistory(recyclingHistoryCreateDto.getQuantity(), recyclingHistoryCreateDto.getImage());
+        return new RecyclingHistory(recyclingHistoryCreateDto.getQuantity(), recyclingHistoryCreateDto.getImage(), recyclingHistoryCreateDto.getTimestamp());
     }
 
     public static RecyclingHistoryDto toRecyclingHistoryDto(RecyclingHistory recyclingHistory) {

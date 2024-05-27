@@ -5,6 +5,7 @@ import com.project.recycleit.beans.RecyclingHistory;
 import com.project.recycleit.beans.WasteItem;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 public class RecyclingHistoryUserDto {
     @JsonProperty
@@ -17,12 +18,12 @@ public class RecyclingHistoryUserDto {
     private final int quantity;
 
     @JsonProperty
-    private final Date timestamp;
+    private final LocalDateTime timestamp;
 
     @JsonProperty
     private final String image;
 
-    public RecyclingHistoryUserDto(Long id, WasteItem wasteItem, int quantity, Date timestamp, String image) {
+    public RecyclingHistoryUserDto(Long id, WasteItem wasteItem, int quantity, LocalDateTime timestamp, String image) {
         this.id = id;
         this.wasteItem = wasteItem;
         this.quantity = quantity;

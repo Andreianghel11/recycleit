@@ -17,6 +17,11 @@
           <img class="delete-button" src="assets/delete.png" (click)="openConfirmationDialog(item.id)">
         </div>
       </div>
+    <div class="pagination-controls">
+      <button (click)="previousPage()" [disabled]="page === 0" class="btn">Previous</button>
+      <div class="noto-sans-text-style text">Page {{ page + 1 }} of {{ totalPages }}</div>
+      <button (click)="nextPage()" [disabled]="page >= totalPages - 1" class="btn">Next</button>
+    </div>
     </div>
 <!--    <ng-template #noData>-->
 <!--      <p>No recycling history available.</p>-->

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name="recycling_history")
@@ -24,8 +25,8 @@ public class RecyclingHistory {
     @Column(name="quantity")
     private int quantity;
 
-    @Column(name="recycled_at")
-    private Date timestamp;
+    @Column(name="timestamp")
+    private LocalDateTime timestamp;
 
     @Column(name="image")
     private String image;
@@ -33,7 +34,7 @@ public class RecyclingHistory {
     public RecyclingHistory() {
     }
 
-    public RecyclingHistory(User user, WasteItem wasteItem, int quantity, Date timestamp, String image) {
+    public RecyclingHistory(User user, WasteItem wasteItem, int quantity, LocalDateTime timestamp, String image) {
         this.user = user;
         this.wasteItem = wasteItem;
         this.quantity = quantity;
@@ -41,14 +42,10 @@ public class RecyclingHistory {
         this.image = image;
     }
 
-    public RecyclingHistory(Long wasteItemId, int quantity) {
-        timestamp = new Date(System.currentTimeMillis());
-    }
-
-    public RecyclingHistory(int quantity, String image){
+    public RecyclingHistory(int quantity, String image, LocalDateTime timestamp){
         this.quantity = quantity;
         this.image = image;
-        timestamp = new Date(System.currentTimeMillis());
+        this.timestamp = timestamp;
     }
 
     public Long getRecyclingHistoryId() {
@@ -83,11 +80,11 @@ public class RecyclingHistory {
         this.quantity = quantity;
     }
 
-    public Date getTimestamp() {
+    public LocalDateTime getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Date timestamp) {
+    public void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
     }
 

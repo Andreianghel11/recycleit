@@ -15,6 +15,9 @@ import com.project.recycleit.repositories.RecyclingHistoryRepository;
 import com.project.recycleit.repositories.UserRepository;
 import com.project.recycleit.repositories.WasteItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -35,9 +38,7 @@ public class RecyclingHistoryService {
     private UserRepository userRepository;
 
     public void addRecyclingHistory(RecyclingHistoryCreateDto recyclingHistoryCreateDto) {
-        System.out.println("Fto is: " + recyclingHistoryCreateDto);
         RecyclingHistory recyclingHistory = RecyclingHistoryMapper.toRecyclingHistory(recyclingHistoryCreateDto);
-        System.out.println("Image is: " + recyclingHistory.getImage());
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
@@ -73,7 +74,7 @@ public class RecyclingHistoryService {
         }
     }
 
-    public List<RecyclingHistoryUserDto> getRecyclingHistoryUser() {
+    public Page<RecyclingHistoryUserDto> getRecyclingHistoryUser(int page, int size) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         Optional<User> user = userRepository.findByEmail(username);
@@ -81,12 +82,10 @@ public class RecyclingHistoryService {
         if (user.isEmpty()) {
             throw new UserNotFoundException("User not found");
         } else {
-            Optional<List<RecyclingHistory>> recyclingHistory = recyclingHistoryRepository.findAllByUserUserId(user.get().getUserId());
-            if (recyclingHistory.isEmpty()) {
-                throw new UserNotFoundException("Recycling history not found");
-            } else {
-                return recyclingHistory.get().stream().map(RecyclingHistoryMapper::toRecyclingHistoryUserDto).toList();
-            }
+            Pageable pageable = PageRequest.of(page, size);
+            Page<RecyclingHistory> recyclingHistoryPage = recyclingHistoryRepository.findAllByUserUserIdOrderByTimestampDesc(user.get().getUserId(), pageable);
+
+            return recyclingHistoryPage.map(RecyclingHistoryMapper::toRecyclingHistoryUserDto);
         }
     }
 

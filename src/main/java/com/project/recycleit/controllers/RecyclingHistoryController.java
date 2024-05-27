@@ -7,6 +7,7 @@ import com.project.recycleit.dtos.RecyclingHistoryDto;
 import com.project.recycleit.dtos.RecyclingHistoryUserDto;
 import com.project.recycleit.services.RecyclingHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,8 +32,8 @@ public class RecyclingHistoryController {
     }
 
     @GetMapping("/getRecyclingHistoryUser")
-    public List<RecyclingHistoryUserDto> getRecyclingHistoryByUser() {
-        return recyclingHistoryService.getRecyclingHistoryUser();
+    public Page<RecyclingHistoryUserDto> getRecyclingHistoryByUser(@RequestParam int page, @RequestParam int size) {
+        return recyclingHistoryService.getRecyclingHistoryUser(page, size);
     }
 
     @DeleteMapping("/deleteRecyclingHistory/{id}")

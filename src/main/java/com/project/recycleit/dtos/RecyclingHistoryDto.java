@@ -9,6 +9,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 public class RecyclingHistoryDto {
 
@@ -25,12 +26,12 @@ public class RecyclingHistoryDto {
     private final int quantity;
 
     @JsonProperty
-    private final Date timestamp;
+    private final LocalDateTime timestamp;
 
     @JsonProperty
     private final String image;
 
-    public RecyclingHistoryDto(Long recyclingHistoryId, UserDto user, WasteItem wasteItem, int quantity, Date timestamp, String image) {
+    public RecyclingHistoryDto(Long recyclingHistoryId, UserDto user, WasteItem wasteItem, int quantity, LocalDateTime timestamp, String image) {
         this.recyclingHistoryId = recyclingHistoryId;
         this.user = user;
         this.wasteItem = wasteItem;

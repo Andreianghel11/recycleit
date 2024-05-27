@@ -13,16 +13,38 @@ import {ConfirmationDialogComponent} from "../confirmation-dialog/confirmation-d
 })
 export class LastScansComponent {
   recyclingHistory: RecyclingHistoryUserDto[] = [];
+  page = 0;
+  size = 8;
+  totalPages = 0;
 
   constructor(private recyclingHistoryService: RecyclingHistoryService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.recyclingHistoryService.getRecyclingHistoryUser().subscribe(data => {
-      this.recyclingHistory = data.reverse();
+    this.loadRecyclingHistory();
+  }
+
+  loadRecyclingHistory(): void {
+    this.recyclingHistoryService.getRecyclingHistoryUser(this.page, this.size).subscribe(data => {
+      this.recyclingHistory = data.content; // Assuming you want to reverse the order
+      this.totalPages = data.totalPages;
       console.log('Recycling history:', this.recyclingHistory);
     }, error => {
       console.error('Error fetching recycling history:', error);
     });
+  }
+
+  nextPage(): void {
+    if (this.page < this.totalPages - 1) {
+      this.page++;
+      this.loadRecyclingHistory();
+    }
+  }
+
+  previousPage(): void {
+    if (this.page > 0) {
+      this.page--;
+      this.loadRecyclingHistory();
+    }
   }
 
   deleteRecyclingHistory(id : number) {

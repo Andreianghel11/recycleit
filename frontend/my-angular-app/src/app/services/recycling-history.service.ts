@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {RecyclingHistoryUserDto} from "../dtos/recyclingHistoryUser.dto";
 import {RecyclingHistoryCreateDto} from "../dtos/recyclingHistoryCreate.dto";
+import {Page} from "../dtos/page.dto";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ export class RecyclingHistoryService {
 
   addRecyclingHistoryItem(wasteItemId: number, quantity: number, image: string | ArrayBuffer | null) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const recyclingHistoryCreateDto : RecyclingHistoryCreateDto = {wasteItemId, quantity, image}
+    const timestamp = new Date();
+    const recyclingHistoryCreateDto : RecyclingHistoryCreateDto = {wasteItemId, quantity, image, timestamp};
     console.log("Addind recycling history item: ", recyclingHistoryCreateDto);
 
     return this.http.post(this.apiUrlAddRecyclingHistory, recyclingHistoryCreateDto, {headers}).subscribe(
@@ -28,8 +30,11 @@ export class RecyclingHistoryService {
     );
   }
 
-  getRecyclingHistoryUser(): Observable<RecyclingHistoryUserDto[]> {
-    return this.http.get<RecyclingHistoryUserDto[]>(this.apiUrlGetRecyclingHistoryUser);
+  getRecyclingHistoryUser(page: number, size: number): Observable<Page<RecyclingHistoryUserDto>> {
+    let params = new HttpParams();
+    params = params.append('page', page.toString());
+    params = params.append('size', size.toString());
+    return this.http.get<Page<RecyclingHistoryUserDto>>(this.apiUrlGetRecyclingHistoryUser, {params});
   }
 
   deleteRecyclingHistory(id: number) {

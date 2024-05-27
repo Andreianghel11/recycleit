@@ -91,6 +91,7 @@
 .icon {
   width: 100%;
   height: auto;
+  max-width: 80%;
 }
 
 .delete-button {
@@ -98,4 +99,36 @@
   width: 80%;
   height: auto;
   max-width: 150px;
+}
+
+.pagination-controls {
+  padding: 10px;
+  display: flex;
+}
+
+.text {
+  color: #010144;
+  margin-top: 10px;
+  text-align: center;
+  font-size: medium;
+  font-weight: 450;
+  padding: 10px;
+}
+
+.btn {
+  background-color: #010144;
+  border-color: #010144;
+  color: #ffffff;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 10px;
+  width: 70px;
+  text-align: center;
+}
+
+.btn:disabled {
+  background-color: #cccccc; /* Gray background color */
+  border-color: #cccccc; /* Gray border color */
+  color: #666666; /* Gray text color */
+  cursor: not-allowed; /* Change cursor to indicate disabled state */
 }
