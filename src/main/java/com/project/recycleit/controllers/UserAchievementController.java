@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/userAchievement")
+@RequestMapping("/api/userAchievements")
 public class UserAchievementController {
     @Autowired
     UserAchievementService userAchievementService;

@@ -8,7 +8,6 @@
         </div>
         <div class="column2">
           <div class="noto-sans-text-style text-title">{{item.wasteItem.name}}</div>
-          <div class="noto-sans-text-style text-info">Quantity: {{item.quantity}}</div>
           <div class="noto-sans-text-style text-color">{{item.wasteItem.recycleColor}} Bin</div>
           <div class="noto-sans-text-style text-timestamp">{{item.timestamp | date:'mediumDate'}}</div>
         </div>
@@ -17,11 +16,11 @@
           <img class="delete-button" src="assets/delete.png" (click)="openConfirmationDialog(item.id)">
         </div>
       </div>
-    <div class="pagination-controls">
-      <button (click)="previousPage()" [disabled]="page === 0" class="btn">Previous</button>
-      <div class="noto-sans-text-style text">Page {{ page + 1 }} of {{ totalPages }}</div>
-      <button (click)="nextPage()" [disabled]="page >= totalPages - 1" class="btn">Next</button>
-    </div>
+      <div class="pagination-controls">
+        <button (click)="previousPage()" [disabled]="page === 0" class="btn">Previous</button>
+        <div class="noto-sans-text-style text">Page {{ page + 1 }} of {{ totalPages }}</div>
+        <button (click)="nextPage()" [disabled]="page >= totalPages - 1" class="btn">Next</button>
+      </div>
     </div>
 <!--    <ng-template #noData>-->
 <!--      <p>No recycling history available.</p>-->

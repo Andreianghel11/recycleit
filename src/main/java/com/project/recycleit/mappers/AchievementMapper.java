@@ -9,7 +9,8 @@ public class AchievementMapper {
         return new AchievementDto(achievement);
     }
 
-    public static Achievement toAchievement(AchievementCreateDto achievementCreateDtoDto) {
-        return new Achievement(achievementCreateDtoDto.getName(), achievementCreateDtoDto.getDescription(), achievementCreateDtoDto.getIcon_path());
+    public static Achievement toAchievement(AchievementCreateDto achievementCreateDto) {
+        return new Achievement(achievementCreateDto.getName(), achievementCreateDto.getDescription(),
+                 achievementCreateDto.getTarget(), achievementCreateDto.getWasteType());
     }
 }

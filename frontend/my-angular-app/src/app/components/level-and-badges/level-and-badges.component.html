@@ -1,0 +1,30 @@
+<div class="container">
+  <app-navbar></app-navbar>
+
+  <div *ngIf="displayedAchievements.length > 0" class="level-and-badges-container">
+    <div *ngFor="let achievement of displayedAchievements" class="level-and-badges-item">
+      <div class="column1">
+        <img [src]="getImageUrl(achievement.achievement.name)" alt="Achievement" class="icon"  [ngClass]="{'grayscale': !achievement.isCompleted}">
+      </div>
+      <div class="column2">
+        <div class="noto-sans-text-style text-title">{{achievement.achievement.name}}</div>
+        <div class="noto-sans-text-style text-info">{{achievement.achievement.description}}</div>
+        <div *ngIf="achievement.isCompleted" class="noto-sans-text-style text-timestamp">{{achievement.timestamp | date:'mediumDate'}}</div>
+      </div>
+      <div class="column3">
+        <div class="progress-bar-container">
+          <div class="progress-bar" [style.height.%]="Math.max(20, getCompletionPercentage(achievement))">
+            <span class="progress-text">{{ getCompletionPercentage(achievement) }}%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pagination-controls">
+      <button (click)="previousPage()" [disabled]="page === 0" class="btn">Previous</button>
+      <div class="noto-sans-text-style text">Page {{ page + 1 }} of {{totalPages}} </div>
+      <button (click)="nextPage()" [disabled]="page >= totalPages - 1" class="btn">Next</button>
+    </div>
+  </div>
+
+
+</div>

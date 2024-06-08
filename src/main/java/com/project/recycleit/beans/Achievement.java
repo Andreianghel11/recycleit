@@ -1,5 +1,6 @@
 package com.project.recycleit.beans;
 
+import com.project.recycleit.utils.WasteTypes;
 import jakarta.persistence.*;
 
 @Entity
@@ -17,16 +18,25 @@ public class Achievement {
     @Column(name="description")
     private String description;
 
-    @Column(name="icon_path")
-    private String icon_path;
+    @Column(name="target")
+    private int target;
+
+    @Column(name="waste_type")
+    private String wasteType;
 
     public Achievement() {
     }
 
-    public Achievement(String name, String description, String icon_path) {
+    public Achievement(String name, String description) {
         this.name = name;
         this.description = description;
-        this.icon_path = icon_path;
+    }
+
+    public Achievement(String name, String description, int target, String wasteType) {
+        this.name = name;
+        this.description = description;
+        this.target = target;
+        this.wasteType = wasteType;
     }
 
     public Long getAchievementId() {
@@ -53,11 +63,19 @@ public class Achievement {
         this.description = description;
     }
 
-    public String getIcon_path() {
-        return icon_path;
+    public int getTarget() {
+        return target;
     }
 
-    public void setIcon_path(String icon_path) {
-        this.icon_path = icon_path;
+    public void setTarget(int target) {
+        this.target = target;
+    }
+
+    public String getWasteType() {
+        return wasteType;
+    }
+
+    public void setWasteType(String wasteType) {
+        this.wasteType = wasteType;
     }
 }

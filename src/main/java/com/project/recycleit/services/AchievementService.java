@@ -1,11 +1,13 @@
 package com.project.recycleit.services;
 
 import com.project.recycleit.beans.Achievement;
+import com.project.recycleit.beans.User;
 import com.project.recycleit.dtos.AchievementCreateDto;
 import com.project.recycleit.dtos.AchievementDto;
 import com.project.recycleit.exceptionHandler.ItemNotFoundException;
 import com.project.recycleit.mappers.AchievementMapper;
 import com.project.recycleit.repositories.AchievementRepository;
+import com.project.recycleit.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,12 @@ public class AchievementService {
     @Autowired
     private AchievementRepository achievementRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private UserAchievementService userAchievementService;
+
     public List<AchievementDto> getAllAchievements() {
         return achievementRepository.findAll().stream().map(AchievementMapper::toAchievementDto).toList();
     }
@@ -25,6 +33,13 @@ public class AchievementService {
     public void addAchievement(AchievementCreateDto achievementCreateDto) {
         Achievement achievement = AchievementMapper.toAchievement(achievementCreateDto);
         achievementRepository.save(achievement);
+
+        // Should also add a new UserAchievement for each user in the database
+        List<User> users = userRepository.findAll();
+
+        for (User user : users) {
+            userAchievementService.addUserAchievement(user, achievement);
+        }
     }
 
     public void deleteAchievement(Long achievementId) {
@@ -42,7 +57,6 @@ public class AchievementService {
             Achievement achievement = achievementOptional.get();
             achievement.setName(achievementCreateDto.getName());
             achievement.setDescription(achievementCreateDto.getDescription());
-            achievement.setIcon_path(achievementCreateDto.getIcon_path());
             achievementRepository.save(achievement);
         }
     }

@@ -25,7 +25,7 @@ export class LastScansComponent {
 
   loadRecyclingHistory(): void {
     this.recyclingHistoryService.getRecyclingHistoryUser(this.page, this.size).subscribe(data => {
-      this.recyclingHistory = data.content; // Assuming you want to reverse the order
+      this.recyclingHistory = data.content;
       this.totalPages = data.totalPages;
       console.log('Recycling history:', this.recyclingHistory);
     }, error => {

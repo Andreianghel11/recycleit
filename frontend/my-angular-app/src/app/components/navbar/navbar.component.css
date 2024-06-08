@@ -9,8 +9,8 @@
 }
 
 .logo {
-  width: 20%; /* Adjust the percentage as needed */
-  height: auto; /* Maintain aspect ratio */
+  height: 90%;
+  width: auto;  /* Maintain aspect ratio */
   max-width: 150px; /* Ensure the image does not grow too large */
   border-radius: 50%;
   margin-left: 20px;

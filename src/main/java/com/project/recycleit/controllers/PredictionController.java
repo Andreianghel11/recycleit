@@ -30,10 +30,6 @@ public class PredictionController {
     public ResponseEntity<WasteItemDto> predictImage(@RequestBody Map<String, String> payload) {
         WasteItemDto wasteItemDto = predictionService.predictImage(payload);
         System.out.println(wasteItemDto);
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.add("Content-Type", "application/json");
-//        Map<String, String> response = new HashMap<>();
-//        response.put("result", result);
         if (wasteItemDto == null) {
             return ResponseEntity.internalServerError().build();
         } else {

@@ -10,6 +10,8 @@ public class UserAchievementMapper {
     }
 
     public static UserAchievementDto toUserAchievementDto(UserAchievement userAchievement) {
-        return new UserAchievementDto(userAchievement.getUserAchievementId(), userAchievement.getUser(), userAchievement.getAchievement(), userAchievement.getTimestamp());
+        return new UserAchievementDto(userAchievement.getUserAchievementId(), userAchievement.getAchievement(),
+                userAchievement.getTimestamp(), userAchievement.getProgress(),
+                userAchievement.getIsCompleted());
     }
 }

@@ -1,5 +1,6 @@
 package com.project.recycleit.dtos;
 
+import com.project.recycleit.utils.WasteTypes;
 import jakarta.persistence.Column;
 
 public class AchievementCreateDto {
@@ -7,12 +8,15 @@ public class AchievementCreateDto {
 
     private final String description;
 
-    private final String icon_path;
+    private final int target;
 
-    public AchievementCreateDto(String name, String description, String icon_path) {
+    private final String wasteType;
+
+    public AchievementCreateDto(String name, String description, int target, String wasteType) {
         this.name = name;
         this.description = description;
-        this.icon_path = icon_path;
+        this.target = target;
+        this.wasteType = wasteType;
     }
 
     public String getName() {
@@ -23,7 +27,11 @@ public class AchievementCreateDto {
         return description;
     }
 
-    public String getIcon_path() {
-        return icon_path;
+    public int getTarget() {
+        return target;
+    }
+
+    public String getWasteType() {
+        return wasteType;
     }
 }

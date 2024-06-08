@@ -18,6 +18,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
+import { LevelAndBadgesComponent } from './components/level-and-badges/level-and-badges.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
     ReportButtonComponent,
     ReportPageComponent,
     ConfirmationDialogComponent,
+    LevelAndBadgesComponent,
   ],
   imports: [
     BrowserModule,

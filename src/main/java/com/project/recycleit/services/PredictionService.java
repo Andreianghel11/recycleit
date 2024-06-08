@@ -14,6 +14,9 @@ public class PredictionService {
     @Autowired
     private WasteItemService wasteItemService;
 
+    @Autowired
+    private UserAchievementService userAchievementService;
+
     public WasteItemDto predictImage(Map<String, String> payload) {
         String imageData = payload.get("image");
 
@@ -28,6 +31,11 @@ public class PredictionService {
             }
             // Process the image and return the class
             String result = runPythonScriptInWsl();
+
+            // Should update the achievements for the current user
+            // based on the result
+            userAchievementService.updateUserAchievementsForWasteItem(result);
+
             return wasteItemService.getWasteItemByName(result);
 
         } catch (IOException e) {

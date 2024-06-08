@@ -25,12 +25,26 @@ public class UserAchievement {
     @Column(name="earned_at")
     private Date timestamp;
 
+    @Column(name="progress")
+    private int progress;
+
+    @Column(name="is_completed")
+    private boolean isCompleted;
+
     public UserAchievement() {
         timestamp = new Date(System.currentTimeMillis());
     }
 
     public UserAchievement(Long userAchievementId) {
         this.userAchievementId = userAchievementId;
+    }
+
+    public UserAchievement(User user, Achievement achievement) {
+        this.user = user;
+        this.achievement = achievement;
+        this.timestamp = new Date(System.currentTimeMillis());
+        this.progress = 0;
+        this.isCompleted = false;
     }
 
     public Long getUserAchievementId() {
@@ -63,5 +77,21 @@ public class UserAchievement {
 
     public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public int getProgress() {
+        return progress;
+    }
+
+    public void setProgress(int progress) {
+        this.progress = progress;
+    }
+
+    public boolean getIsCompleted() {
+        return isCompleted;
+    }
+
+    public void setIsCompleted(boolean isCompleted) {
+        this.isCompleted = isCompleted;
     }
 }

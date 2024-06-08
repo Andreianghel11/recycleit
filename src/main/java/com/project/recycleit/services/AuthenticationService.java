@@ -8,6 +8,7 @@ import com.project.recycleit.beans.User;
 import com.project.recycleit.configs.JwtService;
 import com.project.recycleit.exceptionHandler.UserExistsException;
 import com.project.recycleit.repositories.UserRepository;
+import com.project.recycleit.utils.WasteTypes;
 import lombok.RequiredArgsConstructor;
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -24,6 +25,7 @@ public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
+    private final UserAchievementService userAchievementService;
 
     public AuthenticationResponse register(RegisterRequest request) {
         if (userRepository.existsByEmail(request.getEmail())) {
@@ -39,6 +41,10 @@ public class AuthenticationService {
 
         userRepository.save(user);
         var jwtToken = jwtService.generateToken(user);
+
+        // When a new user is created, the list of achievements is also created for that user
+        userAchievementService.createNewUserAchievements(user);
+
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();

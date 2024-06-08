@@ -24,6 +24,10 @@ export class MenuComponent {
     this.router.navigate(['/last-scans']);
   }
 
+  onLevelAndBadgesClick() {
+    this.router.navigate(['/level-and-badges']);
+  }
+
   onLogoutClick() {
     this.loginService.logout();
   }

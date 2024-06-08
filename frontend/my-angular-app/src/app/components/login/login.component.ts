@@ -21,6 +21,10 @@ export class LoginComponent {
     this.errorMessage = '';
   }
 
+  ngOnInit(): void {
+    this.loginService.logout();
+  }
+
   get email() {
     return this.loginForm.get('email')?.value;
   }

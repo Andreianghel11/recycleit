@@ -2,6 +2,7 @@ package com.project.recycleit.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.project.recycleit.beans.Achievement;
+import com.project.recycleit.utils.WasteTypes;
 import jakarta.persistence.Column;
 
 public class AchievementDto {
@@ -15,19 +16,24 @@ public class AchievementDto {
     private final String description;
 
     @JsonProperty
-    private final String icon_path;
+    private final int target;
 
-    public AchievementDto(Long achievementId, String name, String description, String icon_path) {
+    @JsonProperty
+    private final String wasteType;
+
+    public AchievementDto(Long achievementId, String name, String description, int target, String wasteType) {
         this.achievementId = achievementId;
         this.name = name;
         this.description = description;
-        this.icon_path = icon_path;
+        this.target = target;
+        this.wasteType = wasteType;
     }
 
     public AchievementDto(Achievement achievement) {
         this.achievementId = achievement.getAchievementId();
         this.name = achievement.getName();
         this.description = achievement.getDescription();
-        this.icon_path = achievement.getIcon_path();
+        this.target = achievement.getTarget();
+        this.wasteType = achievement.getWasteType();
     }
 }

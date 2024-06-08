@@ -52,6 +52,49 @@ public class UserAchievementService {
         }
     }
 
+    public void addUserAchievement(User user, Achievement achievement) {
+        UserAchievement userAchievement = new UserAchievement(user, achievement);
+        userAchievementRepository.save(userAchievement);
+    }
+
+    public void createNewUserAchievements(User user) {
+        List<Achievement> achievements = achievementRepository.findAll();
+
+        for (Achievement achievement : achievements) {
+            UserAchievement userAchievement = new UserAchievement(user, achievement);
+            userAchievementRepository.save(userAchievement);
+        }
+    }
+
+    public void updateUserAchievementsForWasteItem(String item) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        Optional<User> user = userRepository.findByEmail(username);
+
+        if (user.isEmpty()) {
+            throw new UserNotFoundException("User not found");
+        } else {
+            Optional<List<UserAchievement>> userAchievements = userAchievementRepository.findAllByUserUserId(user.get().getUserId());
+            if (userAchievements.isEmpty()) {
+                throw new ItemNotFoundException("User achievements not found");
+            } else {
+                List<UserAchievement> userAchievementsList = userAchievements.get();
+                for (UserAchievement userAchievement : userAchievementsList) {
+                    if (!userAchievement.getIsCompleted() &&
+                            (userAchievement.getAchievement().getWasteType().equals(item)
+                                    || userAchievement.getAchievement().getWasteType().equals("Anything"))) {
+                        userAchievement.setProgress(userAchievement.getProgress() + 1);
+                        if (userAchievement.getProgress() == userAchievement.getAchievement().getTarget()) {
+                           userAchievement.setIsCompleted(true);
+                           userAchievement.setTimestamp(new java.util.Date());
+                        }
+                        userAchievementRepository.save(userAchievement);
+                    }
+                }
+            }
+        }
+    }
+
     public List<UserAchievementDto> getAllUserAchievements() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
@@ -64,8 +107,18 @@ public class UserAchievementService {
             if (userAchievements.isEmpty()) {
                 throw new ItemNotFoundException("User achievements not found");
             } else {
-                return userAchievements.get().stream().map(UserAchievementMapper::toUserAchievementDto).toList();
+                return userAchievements.get().stream().map(UserAchievementMapper::toUserAchievementDto).sorted(this::sortAchievements).toList();
             }
+        }
+    }
+
+    private int sortAchievements(UserAchievementDto a, UserAchievementDto b) {
+        if (a.getIsCompleted() != b.getIsCompleted()) {
+            return Boolean.compare(b.getIsCompleted(), a.getIsCompleted());
+        } else if (a.getIsCompleted()) {
+            return b.getTimestamp().compareTo(a.getTimestamp());
+        } else {
+            return Integer.compare(b.getProgress(), a.getProgress());
         }
     }
 }

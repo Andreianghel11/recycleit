@@ -15,31 +15,39 @@ public class UserAchievementDto {
     private final Long userAchievementId;
 
     @JsonProperty
-    private final UserDto user;
+    private final Achievement achievement;
 
     @JsonProperty
-    private final Achievement achievement;
+    private final int progress;
+
+    @JsonProperty
+    private final boolean isCompleted;
 
     @JsonProperty
     private final Date timestamp;
 
-    public UserAchievementDto(Long userAchievementId, User user, Achievement achievement, Date timestamp) {
+    public UserAchievementDto(Long userAchievementId, Achievement achievement, Date timestamp, int progress, boolean isCompleted) {
         this.userAchievementId = userAchievementId;
-        this.user = new UserDto(user);
         this.achievement = achievement;
         this.timestamp = timestamp;
+        this.progress = progress;
+        this.isCompleted = isCompleted;
     }
 
     public Long getUserAchievementId() {
         return userAchievementId;
     }
 
-    public UserDto getUser() {
-        return user;
-    }
-
     public Achievement getAchievement() {
         return achievement;
+    }
+
+    public int getProgress() {
+        return progress;
+    }
+
+    public boolean getIsCompleted() {
+        return isCompleted;
     }
 
     public Date getTimestamp() {
