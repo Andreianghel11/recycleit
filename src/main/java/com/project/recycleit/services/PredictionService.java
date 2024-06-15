@@ -17,6 +17,9 @@ public class PredictionService {
     @Autowired
     private UserAchievementService userAchievementService;
 
+    @Autowired
+    private UserService userService;
+
     public WasteItemDto predictImage(Map<String, String> payload) {
         String imageData = payload.get("image");
 
@@ -35,6 +38,9 @@ public class PredictionService {
             // Should update the achievements for the current user
             // based on the result
             userAchievementService.updateUserAchievementsForWasteItem(result);
+
+            // Should increment itemsScanned for the current user
+            userService.incrementScannedItemsForUser(result);
 
             return wasteItemService.getWasteItemByName(result);
 

@@ -93,7 +93,7 @@ export class MapComponent implements OnInit, AfterViewInit {
       case 'recyclingPoint':
         return 'assets/wasteBins.png';
       default:
-        return 'path/to/default-icon.png';
+        return 'assets/user.png';
     }
   }
 

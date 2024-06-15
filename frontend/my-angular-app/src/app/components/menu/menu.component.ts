@@ -32,6 +32,10 @@ export class MenuComponent {
     this.router.navigate(['/map']);
   }
 
+  onProfileClick() {
+    this.router.navigate(['/profile']);
+  }
+
   onLogoutClick() {
     this.loginService.logout();
   }

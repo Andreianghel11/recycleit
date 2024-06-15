@@ -1,0 +1,29 @@
+<div class="container">
+  <app-navbar></app-navbar>
+  <div class="profile-container">
+    <div class="item">
+      <div class="column1">
+        <img [src]="user.picture ? user.picture : 'assets/user.png'" alt="Processed Image" class="profile-icon" (click)="triggerFileInput()">
+        <input type="file" #fileInput (change)="onFileSelected($event)" style="display: none;">
+      </div>
+      <div class="column2">
+        <div class="noto-sans-text-style text-title">{{user.title}}</div>
+        <div class="noto-sans-text-style text-title-profile">{{user.firstname}} {{user.lastname}}</div>
+        <div class="noto-sans-text-style text-scans-profile">You scanned {{user.itemsScanned}} items so far!</div>
+      </div>
+      <div class="column3"></div>
+    </div>
+
+    <div *ngFor="let waste of wasteTypes" class="item">
+      <div class="column1">
+        <img [src]="'assets/waste/' + waste + '.png'" alt="Processed Image" class="icon">
+      </div>
+      <div class="column2">
+        <div class="noto-sans-text-style text-title-profile">{{waste}}</div>
+        <div class="noto-sans-text-style text-scans-profile">You scanned {{ getNumberOfItemsScanned(waste) }} {{ getNumberOfItemsScanned(waste) === 1 ? 'item' : 'items' }} so far!</div>
+      </div>
+      <div class="column3"></div>
+    </div>
+
+  </div>
+</div>

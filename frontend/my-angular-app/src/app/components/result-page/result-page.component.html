@@ -18,6 +18,7 @@
       </div>
       <div class="column3">
         <app-report-button [image]="imageUrl"></app-report-button>
+        <app-map-button></app-map-button>
       </div>
     </div>
 
@@ -31,7 +32,15 @@
     </div>
 
     <div *ngIf="imageUrl && result" class="result-item">
-      The profile
+      <div class="column1-profile">
+        <img [src]="user.picture ? user.picture : 'assets/user.png'" alt="Processed Image" class="profile-icon">
+      </div>
+      <div class="column2-profile">
+        <div class="noto-sans-text-style text-title">{{user.title}}</div>
+        <div class="noto-sans-text-style text-title-profile">{{user.firstname}} {{user.lastname}}</div>
+        <div class="noto-sans-text-style text-scans-profile">You scanned {{user.itemsScanned}} items so far!</div>
+      </div>
+      <div class="column3"></div>
     </div>
 
   </div>

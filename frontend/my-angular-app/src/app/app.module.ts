@@ -22,6 +22,8 @@ import { LevelAndBadgesComponent } from './components/level-and-badges/level-and
 import { GoogleMapsModule } from '@angular/google-maps';
 import {LocationService} from "./services/location.service";
 import {MapComponent} from "./components/map/map.component";
+import { MapButtonComponent } from './components/map-button/map-button.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import {MapComponent} from "./components/map/map.component";
     ReportPageComponent,
     ConfirmationDialogComponent,
     LevelAndBadgesComponent,
-    MapComponent
+    MapComponent,
+    MapButtonComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
