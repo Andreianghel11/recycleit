@@ -13,6 +13,20 @@
   width: 100vw;
 }
 
+.item-profile {
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  height: 20%;
+  min-height: 20%;
+  max-width: 400px;
+  margin: 10px;
+  background: linear-gradient(0deg, #ffffff 60%, #89cdbe);
+  border: 2px solid #010144;
+}
+
 .item {
   display: flex;
   align-items: center;

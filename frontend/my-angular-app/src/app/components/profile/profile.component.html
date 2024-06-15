@@ -1,7 +1,7 @@
 <div class="container">
   <app-navbar></app-navbar>
   <div class="profile-container">
-    <div class="item">
+    <div class="item-profile">
       <div class="column1">
         <img [src]="user.picture ? user.picture : 'assets/user.png'" alt="Processed Image" class="profile-icon" (click)="triggerFileInput()">
         <input type="file" #fileInput (change)="onFileSelected($event)" style="display: none;">

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {PhotoService} from "../../services/photo.service";
 import {WasteItemDto} from "../../dtos/wasteItem.dto";
 import {RecyclingFactDto} from "../../dtos/recyclingFact.dto";
@@ -39,7 +39,7 @@ export class ResultPageComponent {
   };
   errorMessage: string = '';
 
-  constructor(private photoService: PhotoService, private userService : UserService) {}
+  constructor(private photoService: PhotoService, private userService : UserService, private router: Router) {}
 
   ngOnInit(): void {
     this.photoService.result$.subscribe(data => {
@@ -62,5 +62,9 @@ export class ResultPageComponent {
     this.photoService.getRandomRecyclingFact(wasteItemName).subscribe(data => {
       this.recylingFactDto = data;
     });
+  }
+
+  onProfileClick() {
+    this.router.navigate(['/profile']);
   }
 }

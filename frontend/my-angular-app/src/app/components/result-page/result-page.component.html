@@ -31,7 +31,7 @@
       </div>
     </div>
 
-    <div *ngIf="imageUrl && result" class="result-item">
+    <div *ngIf="imageUrl && result" class="profile-item" (click)="onProfileClick()">
       <div class="column1-profile">
         <img [src]="user.picture ? user.picture : 'assets/user.png'" alt="Processed Image" class="profile-icon">
       </div>
