@@ -1,0 +1,21 @@
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #d2e1dd;
+  overflow: auto;
+}
+
+.map-container {
+  flex-grow: 1;
+  height: 100%;
+  width: 100%;
+}
+
+google-map {
+  height: 100%;
+  width: 100%;
+  min-width: 100%;
+  min-height: 100%;
+  display: block; /* Ensures it is displayed as a block element */
+}

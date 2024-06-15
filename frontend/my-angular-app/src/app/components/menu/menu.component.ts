@@ -28,6 +28,10 @@ export class MenuComponent {
     this.router.navigate(['/level-and-badges']);
   }
 
+  onMapClick() {
+    this.router.navigate(['/map']);
+  }
+
   onLogoutClick() {
     this.loginService.logout();
   }

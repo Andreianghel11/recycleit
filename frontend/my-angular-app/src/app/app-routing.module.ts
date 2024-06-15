@@ -8,6 +8,7 @@ import {LastScansComponent} from "./components/last-scans/last-scans.component";
 import {RegisterComponent} from "./components/register/register.component";
 import {ReportPageComponent} from "./components/report-page/report-page.component";
 import {LevelAndBadgesComponent} from "./components/level-and-badges/level-and-badges.component";
+import {MapComponent} from "./components/map/map.component";
 
 
 const routes: Routes = [
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: 'last-scans', component: LastScansComponent, canActivate: [LoginGuard] },
   { path: 'register', component: RegisterComponent },
   { path: 'report-page/:image', component: ReportPageComponent, canActivate: [LoginGuard] },
-  {path: 'level-and-badges', component: LevelAndBadgesComponent, canActivate: [LoginGuard]},
+  { path: 'level-and-badges', component: LevelAndBadgesComponent, canActivate: [LoginGuard] },
+  { path: 'map', component: MapComponent, canActivate: [LoginGuard] },
   // Add other routes here
   { path: '**', redirectTo: '/login' } // Wildcard route for a 404 page (optional)
 ];

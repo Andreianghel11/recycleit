@@ -19,6 +19,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { LevelAndBadgesComponent } from './components/level-and-badges/level-and-badges.component';
+import { GoogleMapsModule } from '@angular/google-maps';
+import {LocationService} from "./services/location.service";
+import {MapComponent} from "./components/map/map.component";
 
 @NgModule({
   declarations: [
@@ -33,6 +36,7 @@ import { LevelAndBadgesComponent } from './components/level-and-badges/level-and
     ReportPageComponent,
     ConfirmationDialogComponent,
     LevelAndBadgesComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
@@ -41,13 +45,15 @@ import { LevelAndBadgesComponent } from './components/level-and-badges/level-and
     HttpClientModule,
     ReactiveFormsModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    GoogleMapsModule
   ],
   providers: [
     LoginInterceptor,
     { provide: HTTP_INTERCEPTORS, useClass: LoginInterceptor, multi: true },
     provideClientHydration(),
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    LocationService
   ],
   bootstrap: [AppComponent]
 })
