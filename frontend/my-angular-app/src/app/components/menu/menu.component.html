@@ -4,7 +4,7 @@
   <div class="menu-container">
     <div class="menu-item" (click)="onCameraClick(fileInput)">
       <img src="assets/camera.png" alt="Camera" class="icon">
-      <div class="noto-sans-text-style text">Scan waste</div>
+      <div class="noto-sans-text-style text">Scan Waste</div>
     </div>
     <input type="file" accept="image/*" capture="environment" (change)="onFileChange($event)" #fileInput style="display: none;">
     <img *ngIf="photo" [src]="photo" alt="Captured Photo" class="captured-photo">
@@ -16,12 +16,12 @@
 
     <div class="menu-item" (click)="onMapClick()">
       <img src="assets/pin.png" alt="Waste collection centers" class="icon">
-      <div class="noto-sans-text-style text">Waste collection centers</div>
+      <div class="noto-sans-text-style text">Waste Collection Centers</div>
     </div>
 
     <div class="menu-item" (click)="onLevelAndBadgesClick()">
       <img src="assets/badge.png" alt="Badge" class="icon">
-      <div class="noto-sans-text-style text">Level and Badges</div>
+      <div class="noto-sans-text-style text">Achievements</div>
     </div>
 
     <div class="menu-item" (click)="onProfileClick()">
