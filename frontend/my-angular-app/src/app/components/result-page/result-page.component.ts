@@ -49,13 +49,14 @@ export class ResultPageComponent {
       if (this.result && this.result.name) {
         this.getRandomRecyclingFact(this.result.name);
       }
-    });
 
-    this.userService.getCurrentUser().subscribe({
-      next: (user) => this.user = user,
-      error: (err) => this.errorMessage = 'Failed to load user data'
+      this.userService.getCurrentUser().subscribe({
+        next: (user) => this.user = user,
+        error: (err) => this.errorMessage = 'Failed to load user data'
+      });
+      console.log(this.user);
+
     });
-    console.log(this.user);
   }
 
   getRandomRecyclingFact(wasteItemName: string)  {

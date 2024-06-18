@@ -32,6 +32,7 @@ public class PredictionService {
             try (FileOutputStream fos = new FileOutputStream(outputFile)) {
                 fos.write(imageBytes);
             }
+
             // Process the image and return the class
             String result = runPythonScriptInWsl();
 
@@ -53,8 +54,6 @@ public class PredictionService {
     private String runPythonScriptInWsl() {
         String result = "";
         try {
-            System.out.println("Running Python script");
-            System.out.println(System.getProperty("user.dir"));
             ProcessBuilder builder = new ProcessBuilder("wsl.exe", "python3", "uploads/predictImage.py", "uploads/image.png");
             builder.redirectErrorStream(true);
             Process process = builder.start();

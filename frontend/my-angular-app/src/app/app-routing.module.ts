@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'report-page/:image', component: ReportPageComponent, canActivate: [LoginGuard] },
   { path: 'level-and-badges', component: LevelAndBadgesComponent, canActivate: [LoginGuard] },
   { path: 'map', component: MapComponent, canActivate: [LoginGuard] },
-  { path: 'profile', component: ProfileComponent, canActivate: [LoginG'uard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [LoginGuard] },
   // Add other routes here
   { path: '**', redirectTo: '/login' } // Wildcard route for a 404 page (optional)
 ];

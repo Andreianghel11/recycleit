@@ -138,6 +138,16 @@ public class User implements UserDetails {
         this.picture = "";
         this.itemsScanned = 0;
         this.title = "";
+        this.plasticItemsScanned = 0;
+        this.metalItemsScanned = 0;
+        this.glassItemsScanned = 0;
+        this.cardboardItemsScanned = 0;
+        this.biologicalItemsScanned = 0;
+        this.batteryItemsScanned = 0;
+        this.paperItemsScanned = 0;
+        this.shoesItemsScanned = 0;
+        this.clothesItemsScanned = 0;
+        this.trashItemsScanned = 0;
     }
 
     public User(String email, String passwordHash, String firstname, String lastname) {
@@ -150,6 +160,16 @@ public class User implements UserDetails {
         this.picture = "";
         this.itemsScanned = 0;
         this.title = "";
+        this.plasticItemsScanned = 0;
+        this.metalItemsScanned = 0;
+        this.glassItemsScanned = 0;
+        this.cardboardItemsScanned = 0;
+        this.biologicalItemsScanned = 0;
+        this.batteryItemsScanned = 0;
+        this.paperItemsScanned = 0;
+        this.shoesItemsScanned = 0;
+        this.clothesItemsScanned = 0;
+        this.trashItemsScanned = 0;
     }
 
     public Long getUserId() {
